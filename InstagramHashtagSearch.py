@@ -5,7 +5,7 @@ import json
 
 
 class InstagramHashtagSearch:
-	# ハッシュタグのID取得用URL
+    # ハッシュタグのID取得用URL
     hashtag_id_api = "https://graph.facebook.com/ig_hashtag_search?user_id={user_id}&q={hashtag}&access_token={access_token}"
     
     # ハッシュタグの検索用URL
@@ -24,6 +24,7 @@ class InstagramHashtagSearch:
     def get_media_url_list(self, hashtag):
         return [d.get("media_url") for d in self.__seach_hashtag(hashtag) if d.get("media_url") is not None]
         
+    # ハッシュタグで検索して、jsonデータを取得する
     def __seach_hashtag(self, hashtag):
         # ハッシュタグIDの取得
         hashtag_id_url = self.hashtag_id_api.format(user_id=self.user_id, hashtag=hashtag, access_token=self.access_token)
@@ -37,7 +38,8 @@ class InstagramHashtagSearch:
         # 応答のjsonをパースして数値を取得
         result_list = self.__request_url(hashtag_search_url)
         return result_list
-        
+    
+    # WebAPIを叩く
     def __request_url(self, url):
         response = requests.get(url)
         return json.loads(response.text)["data"]

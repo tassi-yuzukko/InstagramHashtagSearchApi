@@ -8,10 +8,10 @@ from InstagramHashtagSearch import *
 if __name__ == '__main__': 
 	# json ファイルに「accountキー」と「tokenキー」があるものとする
 	# （account:ビジネスアカウントID、token：APIトークン）
-	f = open("setting.json", 'r')
+	f = open("InstagramSetting.json", 'r')
 	json_data = json.load(f)
 	
 	obj = InstagramHashtagSearch(json_data["account"], json_data["token"])
-	result = obj.get_media_url_list("coke")
+	result = obj.get_media_url_list("香り家")
 	
 	print(result)
